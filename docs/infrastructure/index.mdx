@@ -17,15 +17,22 @@ Our edge network routing service is also responsible for features such as DDoS m
 Globe uses a custom made runner technology to start your Dart applications on demand in a sandbox environment. The platform will automatically scale your application based on the number of requests it receives.
 Runners are created on demand in the closest [region](/infrastructure/regions) to where a user request originates from.
 
-Globe's on-demand dart runner environment means you should:
-- Have a theoretically unlimited amount of scale.
-- Fully Managed Networking Infrastructure.
+### Key Details
 
-However, there are some limitations to achieve this:
-- The application cannot rely on having a persistent file system.
-- It cannot rely on having persistent memory.
+- **Architecture**: Your Dart code is compiled for the x86_64 architecture.
+- **FFI (Foreign Function Interface)**: If your application depends on FFI, ensure that the associated code or libraries are also compiled for the x86_64 architecture. Note that some syscalls may not be permitted in the runtime environment. If a particular syscall is critical to your application’s functionality, please submit an issue.
 
-Even if a user is performing multiple requests from the same region, it is not guaranteed that the same runner will be used to handle the request. Treat each request as though it is a new environment.
+### Benefits
+
+- **Unlimited Scale**: Theoretically scale to handle any amount of traffic.
+- **Fully Managed Backend Infrastructure**: No need to configure or manage servers, networking, or scaling—everything is handled automatically.
+
+### Limitations
+
+- **No Persistent Volume**: Do not rely on a persistent file system.
+- **No Persistent Memory**: Treat each request as though it operates in a fresh environment.
+
+Even if a user performs multiple requests from the same region, the same runner is not guaranteed to handle subsequent requests.
 
 ## Starting a server
 

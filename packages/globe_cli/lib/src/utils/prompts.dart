@@ -399,7 +399,7 @@ Future<List<String>> findMainEntryPoint(Directory rootDir) async {
 
     final contents = await entity.readAsString();
     if (RegExp(r'\bmain\s*\([^)]*\)').hasMatch(contents)) {
-      entryPoints.add(relativePath);
+      entryPoints.add(relativePath.replaceAll(r'\', '/'));
     }
   }
 

@@ -31,13 +31,3 @@ Each container has a limited amount of memory available (256MB for the Free Plan
 A single request is allowed to run for a maximum duration. If a request takes longer than the allowed duration, the request will be terminated.
 
 For the Free Plan the maximum duration is currently **10 seconds**.
-
-## Platform Limits
-
-### File System
-
-You should only rely on the file system for temporary storage such as processing of files. Any files created during a request will be removed once the request is finished.
-
-### FFI
-
-Usage of FFI (via `dart:ffi`) is not currently supported. We are working on providing this in the future.
